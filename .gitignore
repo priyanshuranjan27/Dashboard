@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+*.env
+
+# Logs
+*.log
+
+# Node
+node_modules/
+**/node_modules/
