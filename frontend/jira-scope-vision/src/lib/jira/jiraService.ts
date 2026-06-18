@@ -4,7 +4,7 @@ import { MOCK_ISSUES, MOCK_PROJECT } from "./mockData";
 import type { JiraIssue, JiraProject } from "./types";
 
 export async function fetchProject(): Promise<JiraProject> {
-  if (jiraConfig.useMock) return MOCK_PROJECT;
+  // if (jiraConfig.useMock) return MOCK_PROJECT;
   const suffix = jiraConfig.projectKey
     ? `?project_key=${encodeURIComponent(jiraConfig.projectKey)}`
     : "";
@@ -12,7 +12,7 @@ export async function fetchProject(): Promise<JiraProject> {
 }
 
 export async function fetchAllIssues(): Promise<JiraIssue[]> {
-  if (jiraConfig.useMock) return MOCK_ISSUES;
+  // if (jiraConfig.useMock) return MOCK_ISSUES;
 
   const all: JiraIssue[] = [];
   let startAt = 0;

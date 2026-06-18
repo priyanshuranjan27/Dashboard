@@ -62,15 +62,15 @@ function Index() {
       ) : (
         <div className="space-y-6">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-            <KpiCard label="Total Issues" value={k.total} icon={ListTodo} accent="info" trend={4} />
-            <KpiCard label="Open" value={k.open} icon={Activity} accent="default" trend={-2} />
-            <KpiCard label="Closed" value={k.closed} icon={CheckCircle2} accent="success" trend={6} />
+            <KpiCard label="Total Issues" value={k.total} icon={ListTodo} accent="info" />
+            <KpiCard label="Open" value={k.open} icon={Activity} accent="default" />
+            <KpiCard label="Closed" value={k.closed} icon={CheckCircle2} accent="success" />
             <KpiCard label="In Progress" value={k.inProgress} icon={Loader} accent="info" />
             <KpiCard label="Blocked" value={k.blocked} icon={ShieldAlert} accent="warning" />
-            <KpiCard label="Critical" value={k.critical} icon={Flame} accent="danger" trend={12} />
+            <KpiCard label="Critical" value={k.critical} icon={Flame} accent="danger" />
             <KpiCard label="Overdue" value={k.overdue} icon={AlarmClock} accent="warning" />
             <KpiCard label="Avg Age" value={`${k.avgAge}d`} icon={Hourglass} accent="info" />
-            <KpiCard label="Avg Resolution" value={`${k.avgResolution}d`} icon={Clock} accent="success" trend={-18} />
+            <KpiCard label="Avg Resolution" value={`${k.avgResolution}d`} icon={Clock} accent="success" />
             <KpiCard label="Health Score" value={`${Math.max(0, 100 - k.blocked * 3 - k.critical * 4)}%`} icon={AlertOctagon} accent="default" />
           </div>
 

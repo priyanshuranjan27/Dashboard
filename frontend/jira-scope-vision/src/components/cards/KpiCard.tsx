@@ -20,9 +20,7 @@ const accentMap: Record<NonNullable<Props["accent"]>, string> = {
 };
 
 export function KpiCard({ label, value, icon: Icon, accent = "default", trend, spark }: Props) {
-  const data = (spark ?? Array.from({ length: 12 }, (_, i) => Math.sin(i / 2) * 4 + 8)).map(
-    (v, i) => ({ i, v }),
-  );
+  const data = spark?.map((v, i) => ({ i, v })) ?? [];
   return (
     <Card className="relative overflow-hidden p-4">
       <div className={`pointer-events-none absolute inset-0 -z-0 bg-gradient-to-br ${accentMap[accent]} opacity-60`} />
@@ -40,19 +38,21 @@ export function KpiCard({ label, value, icon: Icon, accent = "default", trend, s
           <Icon className="h-4 w-4" />
         </div>
       </div>
-      <div className="relative -mx-1 mt-2 h-10">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data}>
-            <defs>
-              <linearGradient id={`spk-${label}`} x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor="currentColor" stopOpacity={0.5} />
-                <stop offset="100%" stopColor="currentColor" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <Area type="monotone" dataKey="v" stroke="currentColor" strokeWidth={1.5} fill={`url(#spk-${label})`} />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      {data.length > 0 && (
+        <div className="relative -mx-1 mt-2 h-10">
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={data}>
+              <defs>
+                <linearGradient id={`spk-${label}`} x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor="currentColor" stopOpacity={0.5} />
+                  <stop offset="100%" stopColor="currentColor" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <Area type="monotone" dataKey="v" stroke="currentColor" strokeWidth={1.5} fill={`url(#spk-${label})`} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </Card>
   );
 }
